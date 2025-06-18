@@ -617,3 +617,95 @@ section {
     radial-gradient(circle at 40% 60%, rgba(25, 25, 25, 0.7) 0%, transparent 50%),
     linear-gradient(135deg, rgba(25, 25, 25, 0.85) 0%, rgba(25, 25, 25, 0.75) 100%);
 }
+
+/* Enhanced theme toggle animations */
+.theme-toggle {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.theme-toggle:hover::before {
+  left: 100%;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+/* Theme transition animation */
+.theme-toggle .transition-transform {
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .transition-transform {
+  transform: rotate(180deg) scale(1.1);
+}
+
+/* Dark mode theme toggle enhancements */
+.dark .theme-toggle {
+  background: rgba(25, 25, 25, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .theme-toggle:hover {
+  background: rgba(35, 35, 35, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Theme indicator dots animation */
+.theme-indicator-dot {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-indicator-dot.active {
+  transform: scale(1.25);
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* Mobile theme toggle adjustments */
+@media (max-width: 640px) {
+  .theme-toggle {
+    padding: 0.5rem;
+  }
+
+  .theme-toggle span {
+    display: none;
+  }
+}
+
+/* Smooth theme transition for all elements */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme toggle keyboard focus */
+.theme-toggle:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Theme toggle active state */
+.theme-toggle:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Enhanced theme toggle glow effect */
+.theme-toggle:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.dark .theme-toggle:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
