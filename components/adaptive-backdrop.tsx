@@ -33,16 +33,16 @@ export function AdaptiveBackdrop() {
   `
 
   const darkBackground = `
-    radial-gradient(circle at 20% 20%, rgba(15, 15, 15, 0.9) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(15, 15, 15, 0.8) 0%, transparent 50%),
-    radial-gradient(circle at 40% 60%, rgba(15, 15, 15, 0.7) 0%, transparent 50%),
-    linear-gradient(135deg, rgba(15, 15, 15, 0.85) 0%, rgba(15, 15, 15, 0.75) 100%)
+    radial-gradient(circle at 20% 20%, rgba(25, 25, 25, 0.95) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(25, 25, 25, 0.9) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(25, 25, 25, 0.85) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(18, 18, 18, 0.9) 0%, rgba(25, 25, 25, 0.8) 100%)
   `
 
   return (
     <div
       ref={backdropRef}
-      className="fixed inset-0 z-8 pointer-events-none transition-all duration-500"
+      className="adaptive-backdrop fixed inset-0 z-8 pointer-events-none transition-all duration-500"
       style={{
         background: theme === "dark" ? darkBackground : lightBackground,
       }}

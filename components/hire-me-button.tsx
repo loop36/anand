@@ -22,7 +22,7 @@ export function HireMeButton() {
         onClick={handleHireMe}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="bg-gradient-to-r from-stone-800 to-stone-900 hover:from-stone-700 hover:to-stone-800 text-white px-8 py-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 group"
+        className="hire-me-button bg-gradient-to-r from-stone-800 to-stone-900 hover:from-stone-700 hover:to-stone-800 dark:from-stone-700 dark:to-stone-800 dark:hover:from-stone-600 dark:hover:to-stone-700 text-white px-8 py-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 group border border-stone-600 dark:border-stone-500"
         size="lg"
       >
         <Sparkles className={`w-5 h-5 mr-2 transition-transform duration-300 ${isHovered ? "rotate-12" : ""}`} />
@@ -31,7 +31,7 @@ export function HireMeButton() {
       </Button>
 
       {/* Animated background glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-stone-600 to-stone-700 rounded-full blur-xl opacity-30 animate-pulse -z-10 scale-110" />
+      <div className="absolute inset-0 bg-gradient-to-r from-stone-600 to-stone-700 dark:from-stone-500 dark:to-stone-600 rounded-full blur-xl opacity-30 animate-pulse -z-10 scale-110" />
     </div>
   )
 }

@@ -26,7 +26,7 @@ export function ContactButtons() {
       <Button
         onClick={handleEmailClick}
         variant="outline"
-        className="border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-stone-400 px-8 py-3 group transition-all duration-300"
+        className="contact-button border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-500 px-8 py-3 group transition-all duration-300 bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm"
       >
         <Mail className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
         <span>anandvb2013@gmail.com</span>
@@ -36,7 +36,7 @@ export function ContactButtons() {
       <Button
         onClick={handleLinkedInClick}
         variant="outline"
-        className="border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-stone-400 px-8 py-3 group transition-all duration-300"
+        className="contact-button border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-500 px-8 py-3 group transition-all duration-300 bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm"
       >
         <Linkedin className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
         <span>LinkedIn Profile</span>
@@ -46,7 +46,7 @@ export function ContactButtons() {
       <Button
         onClick={handlePhoneClick}
         variant="outline"
-        className="border-stone-300 text-stone-700 hover:bg-stone-100 hover:border-stone-400 px-6 py-3 group transition-all duration-300"
+        className="contact-button border-stone-300 dark:border-stone-600 text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 hover:border-stone-400 dark:hover:border-stone-500 px-6 py-3 group transition-all duration-300 bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm"
       >
         <Phone className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-300" />
         <span>Call Me</span>
