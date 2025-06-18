@@ -1,12 +1,14 @@
 {
   "name": "my-v0-project",
   "version": "0.1.0",
-  "private": true,
+  "private": true, "homepage": "https://loop36.github.io/anand",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
