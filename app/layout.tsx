@@ -4,11 +4,20 @@ import "./globals.css"
 import { LenisProvider } from "@/components/lenis-provider"
 import { SwupProvider } from "@/components/swup-provider"
 import { PageTransition } from "@/components/page-transition"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   title: "Anand V Balagopalan - Portfolio",
   description: "Senior Software Engineer & Frontend Lead",
   generator: "v0.dev",
+  icons: {
+    icon: [
+      {
+        url: "/favicon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
@@ -17,14 +26,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <SwupProvider>
-          <LenisProvider>
-            {children}
-            <PageTransition />
-          </LenisProvider>
-        </SwupProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <SwupProvider>
+            <LenisProvider>
+              {children}
+              <PageTransition />
+            </LenisProvider>
+          </SwupProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
