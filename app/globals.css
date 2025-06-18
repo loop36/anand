@@ -110,188 +110,265 @@ html {
   backface-visibility: hidden;
 }
 
-/* Interactive Mac Skills Overlay */
-.skills-overlay {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* Mac Screen Glow Effect */
-.mac-screen {
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
-  animation: screen-glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes screen-glow {
-  0% {
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
-  }
-  100% {
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5), inset 0 0 30px rgba(0, 255, 0, 0.2);
-  }
-}
-
-/* Skills Loading Animation */
-@keyframes skill-load {
-  0% {
-    width: 0%;
+/* Add subtle animations for scroll-triggered elements */
+@keyframes fadeInUp {
+  from {
     opacity: 0;
+    transform: translateY(30px);
   }
-  50% {
+  to {
     opacity: 1;
-  }
-  100% {
-    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.skill-bar {
-  animation: skill-load 0.8s ease-out forwards;
+.scroll-animate {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
-/* Scroll Lock Styles */
-body.scroll-locked {
+/* Swup transition styles */
+.transition-fade {
+  transition: opacity 0.6s ease-in-out;
+}
+
+.is-animating-out .transition-fade {
+  opacity: 0;
+}
+
+.is-animating-in .transition-fade {
+  opacity: 1;
+}
+
+/* Page transition states */
+.is-transitioning {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
 }
 
-/* Enhanced CRT Effects for Skills Display */
-.crt-screen {
-  background: linear-gradient(transparent 50%, rgba(0, 255, 0, 0.03) 50%);
-  background-size: 100% 4px;
-  animation: crt-flicker 0.15s infinite linear alternate;
+.is-animating-out {
+  pointer-events: none;
 }
 
-@keyframes crt-flicker {
-  0% {
-    opacity: 1;
+/* Enhanced scroll animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  98% {
+  to {
     opacity: 1;
-  }
-  99% {
-    opacity: 0.98;
-  }
-  100% {
-    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Skills Section Trigger Animation */
-.skills-trigger {
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Staggered animation utilities */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.stagger-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth navigation indicator */
+.nav-indicator {
   position: relative;
   overflow: hidden;
 }
 
-.skills-trigger::before {
+.nav-indicator::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--foreground)), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.nav-indicator.active::after {
+  transform: translateX(0);
+}
+
+/* Enhanced hire me button styles */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5), 0 0 40px hsl(var(--primary) / 0.2);
+  }
+}
+
+.hire-me-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Contact button hover effects */
+.contact-button-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-button-hover::before {
   content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
-  animation: scan-line 2s linear infinite;
+  background: linear-gradient(90deg, transparent, hsl(var(--accent) / 0.2), transparent);
+  transition: left 0.5s;
 }
 
-@keyframes scan-line {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
+.contact-button-hover:hover::before {
+  left: 100%;
 }
 
-/* Progress Bar Animations */
-.progress-bar {
-  background: linear-gradient(90deg, #00ff00 0%, #00cc00 50%, #009900 100%);
-  animation: progress-glow 1s ease-in-out infinite alternate;
+/* Enhanced shadow effects */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
 }
 
-@keyframes progress-glow {
-  0% {
-    filter: brightness(1);
-  }
-  100% {
-    filter: brightness(1.2);
-  }
+/* 3D Scene Optimizations */
+.three-canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 5;
 }
 
-/* Retro Button Styles */
-.retro-button {
-  background: linear-gradient(145deg, #f0f0f0, #d0d0d0);
-  border: 2px solid #999;
-  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.8), inset -2px -2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.1s ease;
+/* Ensure content stays above 3D background */
+nav,
+section,
+footer {
+  position: relative;
+  z-index: 10;
 }
 
-.retro-button:active {
-  box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.8), inset 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Skills Complete Animation */
-@keyframes complete-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.8;
-  }
-}
-
-.skills-complete {
-  animation: complete-pulse 2s ease-in-out infinite;
-}
-
-/* Mobile Optimizations for Interactive Skills */
+/* Performance optimizations for 3D */
 @media (max-width: 768px) {
-  .interactive-mac {
-    transform: scale(0.8);
-  }
-
-  .mac-screen-content {
-    font-size: 0.7rem;
+  .three-canvas {
+    opacity: 0.4;
   }
 }
 
-/* Accessibility - Reduced Motion */
+/* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
-  .mac-screen,
-  .crt-screen,
-  .skills-trigger::before,
-  .progress-bar,
-  .skills-complete {
-    animation: none;
+  .three-canvas {
+    display: none;
+  }
+
+  .audio-controller {
+    display: none;
   }
 }
 
-/* Enhanced Theme Transitions */
+/* Dark mode specific enhancements */
+.dark .three-canvas {
+  opacity: 0.7;
+}
+
+/* Audio controller styles */
+.audio-controller {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Volume slider styling */
+input[type="range"] {
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: hsl(var(--muted));
+  height: 4px;
+  border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: hsl(var(--foreground));
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+input[type="range"]::-moz-range-track {
+  background: hsl(var(--muted));
+  height: 4px;
+  border-radius: 2px;
+  border: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: hsl(var(--foreground));
+  cursor: pointer;
+  border: none;
+}
+
+/* Theme toggle animation */
+.theme-toggle {
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(180deg);
+}
+
+/* Backdrop blur enhancements */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Improved text readability */
+.content-section {
+  background: hsl(var(--background) / 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+/* Smooth theme transitions */
 * {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Focus States for Accessibility */
-.interactive-element:focus {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-}
-
-/* Loading States */
-.loading-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
