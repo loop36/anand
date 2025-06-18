@@ -4,6 +4,9 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Mail, Phone, Linkedin, MapPin, ArrowRight, Calendar, Award } from "lucide-react"
+import { ScrollProgress } from "@/components/scroll-progress"
+import { FloatingElements } from "@/components/floating-elements"
+import { ParallaxSection } from "@/components/parallax-section"
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("about")
@@ -79,6 +82,9 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900">
+      <ScrollProgress />
+      <FloatingElements />
+
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 backdrop-blur-sm border-b border-stone-200">
         <div className="max-w-6xl mx-auto px-8 py-6">
@@ -103,15 +109,19 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-6xl md:text-8xl font-light tracking-tight mb-8 text-stone-900">ANAND</h1>
-          <div className="w-24 h-px bg-stone-300 mx-auto mb-8"></div>
-          <p className="text-xl md:text-2xl font-light text-stone-600 mb-4">Senior Software Engineer & Frontend Lead</p>
-          <p className="text-lg text-stone-500 max-w-2xl mx-auto leading-relaxed">
-            Six years crafting digital experiences with React, TypeScript, and modern web technologies. Currently
-            leading frontend development at QBurst Technologies.
-          </p>
-        </div>
+        <ParallaxSection speed={0.3}>
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-6xl md:text-8xl font-light tracking-tight mb-8 text-stone-900">ANAND</h1>
+            <div className="w-24 h-px bg-stone-300 mx-auto mb-8"></div>
+            <p className="text-xl md:text-2xl font-light text-stone-600 mb-4">
+              Senior Software Engineer & Frontend Lead
+            </p>
+            <p className="text-lg text-stone-500 max-w-2xl mx-auto leading-relaxed">
+              Six years crafting digital experiences with React, TypeScript, and modern web technologies. Currently
+              leading frontend development at QBurst Technologies.
+            </p>
+          </div>
+        </ParallaxSection>
       </section>
 
       {/* About Section */}

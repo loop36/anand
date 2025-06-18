@@ -92,3 +92,36 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Smooth scrolling enhancements */
+html {
+  scroll-behavior: auto;
+}
+
+/* Enhance text rendering during scroll */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize transforms for better performance */
+.floating-element {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Add subtle animations for scroll-triggered elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-animate {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
