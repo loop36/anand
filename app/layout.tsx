@@ -1,17 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
 import { LenisProvider } from "@/components/lenis-provider"
 import { SwupProvider } from "@/components/swup-provider"
 import { PageTransition } from "@/components/page-transition"
 import { ThemeProvider } from "@/components/theme-provider"
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-})
 
 export const metadata: Metadata = {
   title: "Anand V Balagopalan - Portfolio",
@@ -20,7 +13,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/favicon.svg",
+        url: "/favicon.png",
         type: "image/svg+xml",
       },
     ],
@@ -33,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <SwupProvider>
             <LenisProvider>

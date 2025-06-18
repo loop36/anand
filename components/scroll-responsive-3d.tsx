@@ -69,14 +69,7 @@ function AnimatedComputer() {
       </mesh>
 
       {/* Screen Content Simulation */}
-      <Text
-        position={[0, 1.4, 0.17]}
-        fontSize={0.08}
-        color="#00ff00"
-        anchorX="center"
-        anchorY="middle"
-        font="/fonts/GeistMono-Regular.ttf"
-      >
+      <Text position={[0, 1.4, 0.17]} fontSize={0.08} color="#00ff00" anchorX="center" anchorY="middle">
         {"ANAND.DEV\n> LOADING..."}
       </Text>
 

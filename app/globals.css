@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Local font definitions */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/inter-light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/inter-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/inter-medium.woff2") format("woff2");
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -80,8 +105,8 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-      Arial, sans-serif;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      sans-serif;
   }
 }
 
@@ -93,7 +118,7 @@
 
 /* Smooth scrolling enhancements */
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
 }
 
 /* Enhance text rendering during scroll */
@@ -290,6 +315,10 @@ footer {
   .audio-controller {
     display: none;
   }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Dark mode specific enhancements */
@@ -382,7 +411,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 /* Enhanced loading animations */
-@keyframes pulse-glow {
+@keyframes pulse-glow-loader {
   0%,
   100% {
     box-shadow: 0 0 5px rgba(120, 113, 108, 0.5);
@@ -393,7 +422,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .loading-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-glow-loader 2s ease-in-out infinite;
 }
 
 /* Responsive loading screen */
@@ -405,4 +434,40 @@ input[type="range"]::-moz-range-thumb {
   .loading-subtitle {
     font-size: 1rem;
   }
+}
+
+/* Navigation fixes */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: hsl(var(--foreground));
+}
+
+.nav-link.active {
+  color: hsl(var(--foreground));
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: hsl(var(--foreground));
+  border-radius: 1px;
+}
+
+/* Smooth scroll offset for fixed header */
+section {
+  scroll-margin-top: 120px;
+}
+
+/* Loading screen font fallbacks */
+.loading-screen {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
 }

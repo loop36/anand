@@ -23,19 +23,23 @@ export function SmoothNavigation({ activeSection, setActiveSection }: SmoothNavi
 
     const element = document.getElementById(sectionId)
     if (element) {
-      // Add transition class before scrolling
-      document.body.classList.add("is-transitioning")
+      // Calculate offset for fixed header
+      const headerOffset = 100
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
-      element.scrollIntoView({
+      // Use smooth scrolling
+      window.scrollTo({
+        top: offsetPosition,
         behavior: "smooth",
-        block: "start",
       })
 
       // Remove transition class after scroll completes
       setTimeout(() => {
-        document.body.classList.remove("is-transitioning")
         setIsScrolling(false)
       }, 1000)
+    } else {
+      setIsScrolling(false)
     }
   }
 

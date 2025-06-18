@@ -6,7 +6,7 @@ import { MapPin, ArrowRight, Calendar, Award } from "lucide-react"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { ParallaxSection } from "@/components/parallax-section"
 import { AnimatedSection } from "@/components/animated-section"
-import { SmoothNavigation } from "@/components/smooth-navigation"
+import { SmoothNavigation } from "@/components/smooth_navigation"
 import { StaggeredList } from "@/components/staggered-list"
 import { ScrollResponsive3D } from "@/components/scroll-responsive-3d"
 import { AdaptiveBackdrop } from "@/components/adaptive-backdrop"
@@ -92,25 +92,42 @@ export default function Portfolio() {
   // Handle scroll-based section detection
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "experience", "projects", "contact"]
-      const scrollPosition = window.scrollY + 200
+      const sections = ["contact", "projects", "experience", "about"] // Reverse order for proper detection
+      const scrollPosition = window.scrollY + 150 // Adjust offset for header
 
-      for (const section of sections.reverse()) {
+      // Find the current section
+      for (const section of sections) {
         const element = document.getElementById(section)
-        if (element && scrollPosition >= element.offsetTop) {
+        if (element && scrollPosition >= element.offsetTop - 100) {
           setActiveSection(section)
           break
         }
       }
 
-      // Special case for home section
-      if (window.scrollY < 100) {
+      // Special case for top of page
+      if (window.scrollY < 200) {
         setActiveSection("about")
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    // Throttle scroll events for better performance
+    let ticking = false
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener("scroll", throttledScroll, { passive: true })
+
+    // Initial call
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", throttledScroll)
   }, [])
 
   if (isLoading) {
