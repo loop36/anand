@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
-
-const isProd = process.env.NODE_ENV === 'production';
-
 const nextConfig = {
-  output: 'export',
-  basePath: isProd ? '/anand' : '',
-  assetPrefix: isProd ? '/anand' : '',
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -21,6 +15,6 @@ const nextConfig = {
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

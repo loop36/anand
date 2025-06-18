@@ -14,7 +14,7 @@ export function ContactButtons() {
 
   const handleLinkedInClick = () => {
     // Replace with actual LinkedIn profile URL
-    window.open("https://www.linkedin.com/in/anandvb/", "_blank", "noopener,noreferrer")
+    window.open("https://www.linkedin.com/in/anandvbalagopalan", "_blank", "noopener,noreferrer")
   }
 
   const handlePhoneClick = () => {

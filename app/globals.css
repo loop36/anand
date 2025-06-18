@@ -268,3 +268,36 @@ html {
 .shadow-3xl {
   box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
 }
+
+/* 3D Scene Optimizations */
+.three-canvas {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Ensure content stays above 3D background */
+nav,
+section,
+footer {
+  position: relative;
+  z-index: 10;
+}
+
+/* Performance optimizations for 3D */
+@media (max-width: 768px) {
+  .three-canvas {
+    opacity: 0.4;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .three-canvas {
+    display: none;
+  }
+}
