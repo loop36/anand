@@ -1,37 +1,29 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Separator } from "@/components/ui/separator"
 import { MapPin, ArrowRight, Calendar, Award } from "lucide-react"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { ParallaxSection } from "@/components/parallax-section"
 import { AnimatedSection } from "@/components/animated-section"
-import { SmoothNavigation } from "@/components/smooth-navigation"
 import { StaggeredList } from "@/components/staggered-list"
-import { ScrollResponsive3D } from "@/components/scroll-responsive-3d"
+import { RetroMac3D } from "@/components/retro-mac-3d"
 import { AdaptiveBackdrop } from "@/components/adaptive-backdrop"
 import { HireMeButton } from "@/components/hire-me-button"
 import { ContactButtons } from "@/components/contact-buttons"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { MobileNavigation } from "@/components/mobile-navigation"
+import { EnhancedThemeToggle } from "@/components/enhanced-theme-toggle"
 import { AudioController } from "@/components/audio-controller"
+import { RetroLoader } from "@/components/retro-loader"
+import { InteractiveMacSkills } from "@/components/interactive-mac-skills"
+import { SkillsSectionTrigger } from "@/components/skills-section-trigger"
+import { ScrollController } from "@/components/scroll-controller"
 
 export default function Portfolio() {
-  const [activeSection, setActiveSection] = useState("about")
-
-  const skills = [
-    "JavaScript",
-    "TypeScript",
-    "React.js",
-    "Redux Toolkit",
-    "Next.js",
-    "Vue.js",
-    "Material-UI",
-    "Tailwind CSS",
-    "Node.js",
-    "PostgreSQL",
-    "AWS",
-    "Docker",
-  ]
+  const [activeSection, setActiveSection] = useState("home")
+  const [isLoading, setIsLoading] = useState(true)
+  const [isSkillsActive, setIsSkillsActive] = useState(false)
+  const [skillsCompleted, setSkillsCompleted] = useState(false)
 
   const experiences = [
     {
@@ -87,29 +79,66 @@ export default function Portfolio() {
     },
   ]
 
+  // Handle scroll-based section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isSkillsActive) return // Don't update sections during skills display
+
+      const sections = ["home", "about", "experience", "projects", "contact"]
+      const scrollPosition = window.scrollY + 200
+
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section)
+        if (element && scrollPosition >= element.offsetTop) {
+          setActiveSection(section)
+          break
+        }
+      }
+
+      // Special case for home section
+      if (window.scrollY < 100) {
+        setActiveSection("home")
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [isSkillsActive])
+
+  const handleSkillsTrigger = () => {
+    setIsSkillsActive(true)
+  }
+
+  const handleSkillsComplete = () => {
+    setIsSkillsActive(false)
+    setSkillsCompleted(true)
+  }
+
+  if (isLoading) {
+    return <RetroLoader onComplete={() => setIsLoading(false)} />
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
       <ScrollProgress />
-      <ScrollResponsive3D />
+
+      {/* Show regular 3D Mac when not in skills mode */}
+      {!isSkillsActive && <RetroMac3D />}
+
       <AdaptiveBackdrop />
-      <ThemeToggle />
+      <EnhancedThemeToggle />
       <AudioController />
       <HireMeButton />
+      <MobileNavigation activeSection={activeSection} setActiveSection={setActiveSection} />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-8 py-6">
-          <div className="flex justify-between items-center">
-            <AnimatedSection animation="slide" className="text-sm font-medium tracking-wider">
-              ANAND V BALAGOPALAN
-            </AnimatedSection>
-            <SmoothNavigation activeSection={activeSection} setActiveSection={setActiveSection} />
-          </div>
-        </div>
-      </nav>
+      {/* Scroll Controller */}
+      <ScrollController isLocked={isSkillsActive} />
+
+      {/* Interactive Skills Display */}
+      <InteractiveMacSkills isActive={isSkillsActive} onComplete={handleSkillsComplete} />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-8">
+      <section id="home" className="pt-32 pb-20 px-8 md:pt-32 md:pb-20">
         <ParallaxSection speed={0.3}>
           <div className="max-w-4xl mx-auto text-center">
             <AnimatedSection animation="scale" delay={200}>
@@ -161,17 +190,24 @@ export default function Portfolio() {
                 </div>
               </div>
             </AnimatedSection>
+
+            {/* Skills Section Trigger - Replaces the old skills list */}
             <AnimatedSection animation="slide" delay={200}>
               <div>
-                <h3 className="text-xl font-light mb-6 tracking-tight">Core Technologies</h3>
-                <StaggeredList staggerDelay={50}>
-                  {skills.map((skill, index) => (
-                    <div key={skill} className="flex items-center justify-between py-2 border-b border-border">
-                      <span className="text-foreground">{skill}</span>
-                      <span className="text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+                {!skillsCompleted ? (
+                  <SkillsSectionTrigger onTrigger={handleSkillsTrigger} isTriggered={isSkillsActive} />
+                ) : (
+                  <div>
+                    <h3 className="text-xl font-light mb-6 tracking-tight">Core Technologies</h3>
+                    <div className="text-center p-8 border border-border rounded-lg bg-accent/20">
+                      <div className="text-2xl mb-4">✅</div>
+                      <div className="text-foreground font-medium mb-2">Skills Loaded Successfully</div>
+                      <div className="text-sm text-muted-foreground">
+                        12 core technologies displayed in retro Mac interface
+                      </div>
                     </div>
-                  ))}
-                </StaggeredList>
+                  </div>
+                )}
               </div>
             </AnimatedSection>
           </div>
@@ -300,7 +336,7 @@ export default function Portfolio() {
       <Separator className="bg-border" />
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-8">
+      <section id="contact" className="py-20 px-8 pb-32 md:pb-20">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection animation="fade">
             <h2 className="text-3xl font-light mb-8 tracking-tight">Let's Connect</h2>
@@ -316,7 +352,7 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-8 border-t border-border">
+      <footer className="py-12 px-8 border-t border-border pb-20 md:pb-12">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection animation="fade">
             <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
