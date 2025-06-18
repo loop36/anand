@@ -215,3 +215,56 @@ html {
 .nav-indicator.active::after {
   transform: translateX(0);
 }
+
+/* Retro computer background styles */
+.retro-computer {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  filter: sepia(20%) saturate(80%) hue-rotate(15deg);
+}
+
+/* Enhanced hire me button styles */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(87, 83, 78, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(87, 83, 78, 0.5), 0 0 40px rgba(87, 83, 78, 0.2);
+  }
+}
+
+.hire-me-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Contact button hover effects */
+.contact-button-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-button-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.contact-button-hover:hover::before {
+  left: 100%;
+}
+
+/* Retro-inspired gradient backgrounds */
+.retro-gradient {
+  background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 50%, #d6d3d1 100%);
+}
+
+/* Enhanced shadow effects */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}

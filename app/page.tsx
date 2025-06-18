@@ -1,15 +1,16 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Mail, Phone, Linkedin, MapPin, ArrowRight, Calendar, Award } from "lucide-react"
+import { MapPin, ArrowRight, Calendar, Award } from "lucide-react"
 import { ScrollProgress } from "@/components/scroll-progress"
-import { FloatingElements } from "@/components/floating-elements"
 import { ParallaxSection } from "@/components/parallax-section"
 import { AnimatedSection } from "@/components/animated-section"
 import { SmoothNavigation } from "@/components/smooth-navigation"
 import { StaggeredList } from "@/components/staggered-list"
+import { RetroBackground } from "@/components/retro-background"
+import { HireMeButton } from "@/components/hire-me-button"
+import { ContactButtons } from "@/components/contact-buttons"
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("about")
@@ -86,7 +87,8 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900">
       <ScrollProgress />
-      <FloatingElements />
+      <RetroBackground />
+      <HireMeButton />
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 backdrop-blur-sm border-b border-stone-200">
@@ -302,24 +304,7 @@ export default function Portfolio() {
             </p>
           </AnimatedSection>
           <AnimatedSection animation="scale" delay={300}>
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
-              <Button variant="outline" className="border-stone-300 text-stone-700 hover:bg-stone-100 px-8 py-3">
-                <Mail className="w-4 h-4 mr-2" />
-                anandvb2013@gmail.com
-              </Button>
-              <Button variant="outline" className="border-stone-300 text-stone-700 hover:bg-stone-100 px-8 py-3">
-                <Linkedin className="w-4 h-4 mr-2" />
-                LinkedIn Profile
-              </Button>
-            </div>
-          </AnimatedSection>
-          <AnimatedSection animation="fade" delay={500}>
-            <div className="mt-8 text-sm text-stone-500">
-              <div className="flex items-center justify-center">
-                <Phone className="w-4 h-4 mr-2" />
-                +91 7012623112
-              </div>
-            </div>
+            <ContactButtons />
           </AnimatedSection>
         </div>
       </section>
