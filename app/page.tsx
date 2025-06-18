@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Separator } from "@/components/ui/separator"
 import { MapPin, ArrowRight, Calendar, Award } from "lucide-react"
 import { ScrollProgress } from "@/components/scroll-progress"
@@ -14,9 +14,11 @@ import { HireMeButton } from "@/components/hire-me-button"
 import { ContactButtons } from "@/components/contact-buttons"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { AudioController } from "@/components/audio-controller"
+import { PortfolioLoader } from "@/components/portfolio-loader"
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("about")
+  const [isLoading, setIsLoading] = useState(true)
 
   const skills = [
     "JavaScript",
@@ -86,6 +88,34 @@ export default function Portfolio() {
       tech: ["React.js", "Web3.js", "CoinMarketCap API"],
     },
   ]
+
+  // Handle scroll-based section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["about", "experience", "projects", "contact"]
+      const scrollPosition = window.scrollY + 200
+
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section)
+        if (element && scrollPosition >= element.offsetTop) {
+          setActiveSection(section)
+          break
+        }
+      }
+
+      // Special case for home section
+      if (window.scrollY < 100) {
+        setActiveSection("about")
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  if (isLoading) {
+    return <PortfolioLoader onComplete={() => setIsLoading(false)} />
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
