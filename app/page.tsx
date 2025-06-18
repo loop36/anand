@@ -51,7 +51,7 @@ export default function Portfolio() {
       subtitle: "Frontend Developer & SDET",
       company: "Infosys Limited",
       location: "Bangalore, Karnataka",
-      period: "2019 — 2023",
+      period: "2019 — 2022",
       description:
         "Developed internal tools and client applications while creating comprehensive automated test suites.",
       highlights: [
@@ -67,13 +67,13 @@ export default function Portfolio() {
     {
       title: "Digital Management System",
       period: "2024",
-      description: "Comprehensive client portal for contract management and data processing",
+      description: " Led Frontend team in building a comprehensive client portal for contract management and data processing",
       tech: ["React.js", "TypeScript", "Material-UI", "Vite"],
     },
     {
-      title: "AI Resume Parser",
+      title: "AI Resume Parser ",
       period: "2024",
-      description: "Intelligent UI for AI-driven resume parsing and job matching",
+      description: "Worked on Intelligent UI for AI-driven resume parsing and job matching",
       tech: ["React.js", "Redux Toolkit", "Web Workers"],
     },
     {
@@ -150,7 +150,7 @@ export default function Portfolio() {
                   </div>
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-2" />
-                    Available Immediately
+                    Available
                   </div>
                 </div>
               </div>
@@ -314,7 +314,7 @@ export default function Portfolio() {
         <div className="max-w-4xl mx-auto">
           <AnimatedSection animation="fade">
             <div className="flex flex-col md:flex-row justify-between items-center text-sm text-stone-500">
-              <div>© 2024 Anand V Balagopalan</div>
+              <div>© 2025 Anand V Balagopalan</div>
               <div className="mt-4 md:mt-0">
                 <span>Built with React, TypeScript & Tailwind CSS</span>
               </div>
